@@ -1,0 +1,8 @@
+members_import.import_allied_members:
+  path: '/import-allied-members'
+  defaults:
+    _controller: '\Drupal\members_import\Controller\MembersImportController::getAlliedMembers'
+    _title: 'Import Allied Members'
+  requirements:
+    _permission: 'access content'
+

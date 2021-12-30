@@ -1,0 +1,21 @@
+crm.small:
+  label: small
+  mediaQuery: "(min-width: 0px)"
+  weight: 1
+  multipliers:
+    - 1x
+    - 2x
+crm.medium:
+  label: medium
+  mediaQuery: "(min-width: 768px)"
+  weight: 2
+  multipliers:
+    - 1x
+    - 2x
+crm.large:
+  label: large
+  mediaQuery: "(min-width: 1024px)"
+  weight: 3
+  multipliers:
+    - 1x
+    - 2x

@@ -1,0 +1,44 @@
+uuid: 422729ff-7a8d-4512-8008-02e6aac7b6dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content
+    - node.type.resource
+  module:
+    - entity_reference_layout
+id: node.resource.field_content
+field_name: field_content
+entity_type: node
+bundle: resource
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: '1'
+    target_bundles: null
+    target_bundles_drag_drop:
+      headline:
+        weight: '4'
+        enabled: 0
+      rich_text:
+        weight: '5'
+        enabled: 0
+      section:
+        weight: '6'
+        enabled: 0
+    layout_bundles: section
+    allowed_layouts:
+      'Columns: 1':
+        layout_onecol: 'One column'
+      'Columns: 2':
+        layout_twocol: 'Two column'
+      'Columns: 3':
+        layout_threecol_25_50_25: 'Three column 25/50/25'
+        layout_threecol_33_34_33: 'Three column 33/34/33'
+field_type: entity_reference_layout_revisioned

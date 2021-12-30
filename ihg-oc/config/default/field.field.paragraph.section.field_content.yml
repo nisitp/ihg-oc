@@ -1,0 +1,39 @@
+uuid: 4ef454d8-9339-4f58-aa4a-bad7ae348dee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_layout
+id: paragraph.section.field_content
+field_name: field_content
+entity_type: paragraph
+bundle: section
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: '0'
+    target_bundles:
+      section: section
+    target_bundles_drag_drop:
+      section:
+        enabled: '1'
+        weight: '2'
+    layout_bundles: section
+    allowed_layouts:
+      'Columns: 1':
+        layout_onecol: 'One column'
+      'Columns: 2':
+        layout_twocol: 'Two column'
+      'Columns: 3':
+        layout_threecol_25_50_25: 'Three column 25/50/25'
+        layout_threecol_33_34_33: 'Three column 33/34/33'
+field_type: entity_reference_layout_revisioned

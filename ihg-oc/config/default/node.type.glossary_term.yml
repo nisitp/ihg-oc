@@ -1,0 +1,17 @@
+uuid: 2cee8cde-9dd9-4579-8969-ea2658ed29c6
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Glossary Term'
+type: glossary_term
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

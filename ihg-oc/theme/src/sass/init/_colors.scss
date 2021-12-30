@@ -1,0 +1,46 @@
+$grey-dark: #1d252c;
+$light-grey: #c1c5ca;
+$dark-grey: #c2c4cb;
+$grey: #91989e;
+$grey-light: rgba(234, 233, 243, 1);
+$grey-extra-light: #f6f5fa;
+$lighter-grey: #ced2d6;
+$white: #fff;
+$blue: #0072b9;
+$light-blue: #006f94;
+$red: #c00;
+$yellow: #fd0;
+$slate: #243746;
+$light-slate: #394958;
+$dark-teal: #5292c1;
+$cornflower-blue: $dark-teal;
+$teal: #00afaa;
+$green: #82c55c;
+$body-color: $grey-dark;
+$orange: #c35325;
+$purple: #20125c;
+$magenta: #a61a75;
+$dark-pink: #923573;
+$lavander: #7c61db;
+$light-teal: #00afaa;
+$mid-blue: #003595;
+$ihg-orange: #d96932;
+
+$programs: (
+  'best-practices': $green,
+  'covid': $light-blue,
+  'operations': $dark-pink,
+  'ownership': $light-slate,
+  'programs': $ihg-orange,
+  'technology': $grey-dark,
+  'topiccatalog': $light-slate
+);
+
+$categories: (
+  'Best Practices': (badgebg: $light-blue, badgecol: white),
+  'Article': (badgebg: $grey, badgecol: white),
+  'Multimedia': (badgebg: $mid-blue, badgecol: white),
+  'FAQ': (badgebg: $light-teal, badgecol:white),
+  'Resource': (badgebg: $light-slate, badgecol:white),
+  'Blog': (badgebg: $cornflower-blue, badgecol: white)
+);

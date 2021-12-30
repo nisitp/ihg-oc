@@ -1,0 +1,25 @@
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      dist/css/main.css: {}
+
+global-scripts:
+  version: VERSION
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+  js:
+      js/modernizr.js: {}
+      dist/scripts/index.min.js: {}
+
+fonts-work-sans:
+  css:
+    base:
+      'https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900&display=swap': { external: true }
+
+fonts-libre-franklin:
+  css:
+    base:
+      'https://fonts.googleapis.com/css?family=Libre+Franklin:500,900&display=swap': { external: true }

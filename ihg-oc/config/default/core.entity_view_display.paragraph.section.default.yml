@@ -1,0 +1,24 @@
+uuid: 1f269563-571c-4fb1-86ea-fa5d1f836b9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.section.field_content
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_layout
+id: paragraph.section.default
+targetEntityType: paragraph
+bundle: section
+mode: default
+content:
+  field_content:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_layout
+    region: content
+hidden: {  }

@@ -1,0 +1,23 @@
+uuid: 6793f5dd-704b-4043-8ba9-4707d9f158e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.headline.field_heading
+    - paragraphs.paragraphs_type.headline
+  module:
+    - heading
+id: paragraph.headline.default
+targetEntityType: paragraph
+bundle: headline
+mode: default
+content:
+  field_heading:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: heading
+    region: content
+hidden:
+  created: true
+  status: true

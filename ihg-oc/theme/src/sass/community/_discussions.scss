@@ -1,0 +1,19 @@
+body .body {
+  .forceChatterStyle--default .cuf-element .cuf-feedback {
+    &.has-comments {
+      padding-bottom: 50px;
+
+      .cuf-showMoreComments button,
+      .commentsExpandDrawer button {
+        position: absolute;
+        bottom: 10px;
+        padding: 0.25em;
+        margin-left: 30%;
+
+        @media only screen and (min-width: 1025px) {
+          margin-left: 40%;
+        }
+      }
+    }
+  }
+}

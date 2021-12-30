@@ -1,0 +1,28 @@
+uuid: 16f49c21-a48e-4939-a728-9ee2345d8b3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.webinar.body
+    - node.type.webinar
+  module:
+    - text
+    - user
+id: node.webinar.default
+targetEntityType: node
+bundle: webinar
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

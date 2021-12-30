@@ -1,0 +1,42 @@
+uuid: 99bf8528-979a-485e-bde5-e1074ee09e10
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.allied_member.body
+    - field.field.node.allied_member.field_active
+    - field.field.node.allied_member.field_member_id
+    - field.field.node.allied_member.field_member_logo
+    - field.field.node.allied_member.field_membership_category
+    - field.field.node.allied_member.field_membership_level
+    - field.field.node.allied_member.field_url
+    - node.type.allied_member
+  module:
+    - text
+    - user
+id: node.allied_member.teaser
+targetEntityType: node
+bundle: allied_member
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_active: true
+  field_member_id: true
+  field_member_logo: true
+  field_membership_category: true
+  field_membership_level: true
+  field_url: true

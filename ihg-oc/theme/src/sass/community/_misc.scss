@@ -1,0 +1,59 @@
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.unpad-images img {
+  margin-left: -20px;
+  margin-right: -20px;
+  max-width: calc(100% + 40px) !important;
+}
+
+.unpad-images p:first-child img {
+  margin-top: -20px;
+}
+
+.unpad-parent {
+  margin: -20px;
+}
+
+// topic list (e.g. homepage)
+
+body .body .forceTopicFeaturedTopics ul.topicList {
+  .topicContent {
+    .topicLabel {
+      align-self: flex-end;
+      color: white;
+      background: $blue;
+      font-weight: 400;
+      font-size: 1.35rem;
+    }
+
+    &:hover .topicLabel {
+      background: $blue;
+    }
+  }
+}
+
+body .slds-text-body_small,
+body .forceCommunityTopArticleItem .article-title {
+  @extend %body;
+}
+
+// Weird empty header for rate article. This may need to be tweaked to avoid hiding other elements.
+body .siteforceServiceBody .cCenterPanel .article-column.zoom {
+  display: none !important;
+}
+
+forceknowledge-article-thumb-vote-l-w-c {
+  .slds-media__body {
+    @include font-size(16px);
+
+    line-height: 1;
+  }
+}

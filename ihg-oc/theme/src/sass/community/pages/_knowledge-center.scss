@@ -1,0 +1,62 @@
+.acknowltngKnowledge {
+  .slds-large-size_4-of-12 {
+    // override width
+    @include bp(m) {
+      width: 380px;
+    }
+  }
+
+  // Fix badge spacing
+  .articles-item__tegs-list {
+    .slds-badge {
+      margin-bottom: var(--lwc-spacingXSmall);
+    }
+  }
+}
+
+.acknowltngKnowledgeSidebar {
+
+  .filters {
+    background: $grey-extra-light !important;
+
+    &__head {
+      display: none !important;
+    }
+
+    &::after {
+      background: transparent !important;
+    }
+
+    .acknowltngKnowledgeCategories {
+      .filters__group-title {
+        display: none;
+      }
+    }
+
+    .filters__accordion-title {
+      color: $blue;
+    }
+
+    .accordion .slds-accordion__list-item {
+      &::before {
+        display: none; // hide the dotted line behind the filters
+        opacity: 0;
+      }
+
+     .slds-accordion__summary-action-icon {
+        b {
+          background: $lighter-grey;
+        }
+      }
+    }
+
+  }
+
+  .filters + .filter-button-mobile {
+
+    @include bp(m) {
+      display: none !important;
+    }
+  }
+
+}

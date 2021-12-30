@@ -1,0 +1,37 @@
+$color-bg: #f6f5fa;
+$color-primary: #006f94;
+$color-secondary: #00a7e1;
+$color-green: #82c55c;
+$color-blue: #003595;
+$color-orange: #D96932;
+$color-teal: #218383;
+$color-purple: #A61B75;
+$color-text: #231f20;
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+@import "../node_modules/include-media/dist/include-media";
+
+.loading {
+  text-align: center;
+  padding: 30px;
+
+  &__spinner {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    vertical-align: text-bottom;
+    border: 5px solid $color-primary;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner .75s linear infinite;
+  }
+}
+
+@keyframes spinner {
+  to { transform: rotate(360deg); }
+}

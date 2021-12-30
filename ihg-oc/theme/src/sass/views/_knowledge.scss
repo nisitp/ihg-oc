@@ -1,0 +1,116 @@
+p.see-all {
+  text-align: right;
+}
+
+.acknowltngKnowledge .head-page h1.head-page__title {
+
+}
+
+.acknowltngKnowledge {
+  .head-page {
+    h1.head-page__title {
+      @extend %h1;
+    }
+
+    .head-page__search-bar {
+      display: none;
+      border: 20px solid red;
+    }
+
+    .head-page__sort {
+      justify-content: flex-end;
+
+      .slds-dropdown {
+        left: auto;
+        right: 0;
+
+        .slds-media__body {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+.knowledge--article--list { // new HS component version
+  &.knowledge--article--Grid {
+    // apply grid even for mobile so we can benefit from the row gap
+
+      display: grid;
+      grid-column-gap: $space;
+      grid-row-gap: $space;
+      justify-content: space-between;
+      @include bp(m) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+    &.gridsize-1 {
+      display: block;
+    }
+
+    @include bp(m) {
+      &.gridsize-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      &.gridsize-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    > .knowledge-item {
+      @extend %bordered-card;
+      // border: $space solid transparent;
+      // border-bottom-width: $space*2;
+
+      padding: $space;
+
+      &.with-type-false {
+        @extend %bordered-card;
+      }
+
+      &.with-type-true {
+        padding-bottom: 40px;
+      }
+
+      text-align: center;
+      position: relative;
+      @include font-size(24px);
+
+      .knowledge-item-type {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 2px 0;
+        text-transform: uppercase;
+        @include font-size(12px);
+      }
+
+      a {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; // anything over 3 lines will ellpisis
+        min-height: 4em;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      @each $cat, $color in $categories {
+        $cols: map-get($categories, $cat);
+
+        &[data-articleType='#{$cat}'].with-type-true {
+          // border-color: map-get($cols, 'badgebg');
+
+          .knowledge-item-type {
+            background: map-get($cols, 'badgebg');
+            color: map-get($cols, 'badgecol');
+          }
+        }
+      }
+    }
+
+    .knowledge-article + .knowledge-article {
+      // margin-left: 2%;
+    }
+  }
+}

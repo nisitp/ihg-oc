@@ -1,0 +1,309 @@
+%bordered-card {
+  // maybe extend this more broadly in future, but narrowing focus for initial scope.
+  // Straight copy from AC directory for now
+  background: #fff;
+  border: 1px solid $grey-extra-light;
+  // box-sizing: border-box;
+  padding: 20px;
+  border-radius: 16px;
+  // overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+  // box-shadow: none;
+  box-shadow: rgba(152, 152, 152, 0.1) 0 15px 50px;
+
+  &:hover {
+    //  box-shadow: 0 15px 50px rgba(152, 152, 152, .9);
+    box-shadow: rgba(13, 13, 13, 0.26) 0 15.779px 35.9775px -11.6854px; // wow.
+    transform: translateY(-0.2rem);
+  }
+}
+
+%no-hover {
+  &:hover {
+    box-shadow: rgba(152, 152, 152, 0.1) 0 15px 50px;
+    transform: none;
+  }
+}
+
+@mixin undo-card($important: "") {
+  background: transparent #{$important};
+  border: none #{$important};
+  box-shadow: none #{$important};
+  padding: 0 #{$important};
+  border-radius: none #{!important};
+
+  &:hover {
+    box-shadow: none #{!important};
+    transform: none #{!important};
+  }
+}
+
+%card {
+  background: white;
+  padding: $space;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.098);
+
+  .ui-widget > * {
+    // nested items
+    box-shadow: none;
+  }
+
+  &:empty {
+    display: none;
+  }
+}
+
+
+.cb-section_column.has-embedded-resource > div {
+  background: #fafafa;
+}
+
+.link-tiles {
+  .cb-section_column {
+    padding-bottom: 0 !important;
+  }
+  &.last-in-group {
+    margin-bottom: $space;
+  }
+}
+
+.large-column .ui-widget > div {
+  height: auto !important; // see below
+}
+
+.class-setter-container {
+  display: none !important;
+}
+
+.link-tiles .ui-widget {
+
+  padding: 0;
+  > div {
+    // quick hack
+    height: 350px;
+    overflow: hidden;
+
+  }
+
+  @extend %bordered-card; // This leads to weirdness in the editor.
+  box-shadow: rgba(13, 13, 13, 0.26) 0 15.779px 35.9775px -11.6854px; // wow.
+
+  div.uiOutputRichText {
+    padding: 0;
+
+    p {
+      margin: 0;
+
+      // This is dangerous but needed to make things be the right height...will need to be sure there's only ever one paragraph.
+      min-height: 310px;
+      z-index: 0;
+      display: grid;
+      align-content: center;
+      background: $lighter-grey;
+    }
+
+    img {
+      min-height: 320px !important;
+      object-fit: cover;
+    }
+  }
+
+  .more-link {
+    display: grid;
+    text-align: center;
+    align-content: center;
+    width: 100%;
+    padding: 20px;
+    height: 350px;
+    line-height: 1.2;
+    background: $light-grey;
+    color: black;
+    font-family: 'PT Sans Narrow';
+    font-weight: 600;
+    font-size: 48px;
+    &:hover {
+      color: black;
+    }
+
+    &.has-blue-background {
+      background: $blue;
+      color: white;
+    }
+  }
+
+  h2 {
+    //background: $light-blue;
+    //color: white;
+    background: $light-grey;
+    color: black;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 20px;
+
+    a {
+      color: white;
+    }
+  }
+
+
+  // for now if we're embedding things (e.g. resources), strip the styling
+  // this will need work!
+  .knowledge-item {
+    @include undo-card(!important);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-height: 200px; // hackomatic
+
+    .knowledge-item--thumbnail {
+      overflow: hidden;
+      img {
+        min-width: unset !important;
+        max-height: 200px;
+      }
+    }
+
+    a {
+      text-align: left;
+    }
+
+  }
+
+  img {
+    min-width: 100%; // danger!
+  }
+}
+
+body .siteforceContentArea .ui-widget {
+  &.frameless > article {
+    @include undo-card(!important);
+  }
+
+  &:empty {
+    display: none;
+  }
+
+  a,
+  .forceCommunityRichText a {
+    @extend %standard-link;
+  }
+
+  .slds-card,
+  %slds-card {
+    border: none;
+    padding: 0;
+
+    h1.topicHeader,
+    header,
+    .slds-card__header {
+      // font-size: inherit;
+      padding: 0;
+
+      h2 {
+        // font-size: inherit;
+        text-transform: none !important;
+      }
+    }
+
+    ul {
+      @extend %padded-list;
+      @extend %indented-list;
+      @extend %bulleted-list;
+    }
+  }
+
+  .ui-widget .categories {
+    @extend %slds-card;
+  }
+
+  .knowledge--article--list {
+    .slds-card__body > ul {
+      // @extend %bordered-list;
+    }
+  }
+
+  .knowledge--article-toc {
+    ul {
+      margin-left: 0;
+
+      li {
+        border-bottom: none;
+        margin-bottom: 0.5em;
+        list-style: none;
+        color: auto;
+
+        &::before {
+          display: none;
+        }
+
+        &.active a {
+          border-left: 4px solid $green;
+        }
+      }
+
+      a {
+        @extend %standard-link;
+
+        display: block;
+        padding-left: $space;
+        border-left: 4px solid transparent;
+      }
+
+      ul {
+        margin-top: 0.5em;
+      }
+
+      ul li {
+        width: 70%; // to make borders look better
+        a {
+          display: block;
+          padding-left: $space * 2;
+        }
+      }
+    }
+  }
+
+  // clean up SF ugly
+  .comm-related-articles {
+    li * {
+      word-break: normal;
+      overflow-wrap: break-word;
+    }
+  }
+}
+
+body .siteforceContentArea .slds-col {
+  .ui-widget {
+    .hideEl {
+      display: none !important; // a bit dangerous...
+    }
+
+    h2,
+    .topicListHeader {
+      @extend %h2;
+    }
+  }
+}
+
+// Quick hack overrides
+
+// Homepage ad
+div.ui-widget[data-item-id="1862fbb8-834e-4438-92d1-6853a7a74d7f"] {
+  & > div {
+    @include undo-card(!important);
+  }
+}
+
+// AC Blog categories widget
+
+div.acblexBlogCategories.categories h3 {
+  font-size: 0;
+  padding-bottom: $space;
+
+  &::after {
+    content: "Blog";
+    font-size: 30px;
+  }
+}

@@ -1,0 +1,428 @@
+// login
+
+.comm-page-login-home,
+.comm-page-forgot-password {
+  .communityLogoContainer img {
+    width: 100% !important;
+  }
+
+    button.slds-button, .loginButton {
+      &, .label {
+        background: $blue !important;
+      }
+    }
+
+  .uiOutputRichText {
+    color: white !important;
+  }
+}
+// FLOW - move this
+
+.comm-page-home .flowruntimeBody {
+  border: 2px solid #ccc;
+  position: relative;
+
+  @include bp(m) {
+    min-height: 450px;
+    padding-left: 25%;
+  }
+
+  // Strip paragraph margins because ugh
+  .uiOutputRichText p {
+    margin-bottom: 0;
+  }
+
+  // Headers
+  .slds-p-around_small.slds-text-align_left {
+    @include bp(0, m) {
+      height: auto !important;
+    }
+  }
+
+
+
+  .slds-grid {
+    // right now only used for the member preferences
+   // margin-top: $space;
+  }
+
+  // checkboxes
+  .slds-form-element__label {
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  // handle SF craziness to style the image inset
+  > div.body > .slds-m-bottom_x-small:first-child,
+  > flowruntime-list-container > div > flowruntime-screen-field:first-child .slds-m-bottom_x-small {
+
+    padding-top: 10px;
+
+    @include bp(m) {
+      padding-top: 0;
+      position: absolute;
+      left: 0;
+      height: 100%;
+      width: 20%; // a bit smaller than the padding on the container, so we get a gutter
+      overflow: hidden;
+
+
+      img {
+        min-width: 1000px; // nice and wide so it fills the height;
+        height: auto;
+        position: relative; // so we can adjust the position
+        left: -300px;
+
+        &[src*="_1"] { // I'm so clever ;p
+          left: -480px;
+        }
+        &[src*="_3"] { // Express your interests.
+          left: -580px;
+        }
+        &[src*="_4"] { // thank you page
+          left: -250px;
+          top: -40px;
+        }
+      }
+    }
+  }
+
+  .slds-float_right button {
+    // Note: can't do all buttons because progress bar uses button
+    @extend %button;
+  }
+
+  .allonboard-progress-indicator {
+    padding-top: $space*3;
+  }
+
+  // little "q" in the flow header
+  .logo {
+    display: none;
+  }
+
+  // hide the drag-and-drop file uploader
+  .slds-file-selector__text, .slds-file-selector_files svg {
+    display: none;
+  }
+
+  .lhContainer {
+
+    .slds-p-around_small {
+      padding-left: 0;
+    }
+
+    .headline-slot span {
+      @extend %h1;
+
+      @include bp(m) {
+        font-size: 56px;
+        text-align: left;
+      }
+
+    }
+
+    * {
+      // display: none;
+      background-image: none !important;
+    }
+  }
+
+  .flowruntime-inline {
+    * {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .slds-checkbox_faux {
+        border: 1px solid #000 !important;
+    }
+
+  }
+
+  .slds-progress__item.slds-is-completed {
+
+    button {
+      background: #ddd;
+      width: 16px;
+      height: 14px;
+      border: 3px solid white;
+
+      svg {
+        color: #ccc !important;
+        background: white;
+      }
+    }
+  }
+}
+
+.cypressHomeHero {
+  h1,
+  h2 {
+    font-weight: 700;
+  }
+}
+
+html body.comm-page-home {
+
+  .search-box {
+
+    button svg g {
+      fill: white;
+    }
+  }
+
+  .hero {
+    h2 {
+      font-family: $secondary-font;
+    }
+  }
+
+  .themeLayoutStarterWrapper {
+   // background: $grey-extra-light;
+   background-color: $grey-extra-light;
+
+   .body {
+     background: transparent;
+   }
+
+    .cb-section {
+      background: white;
+      margin-bottom: $space;
+    }
+
+    // hide the styling for the onboarding since it's empty once complete...
+    div[data-region-name="content"] > .ui-widget:first-child .cb-section {
+      border-bottom: none;
+      margin-bottom: none;
+      background: transparent; // will need to fix later perhaps
+    }
+
+    div[data-item-id="4b631c05-7cd9-486c-b12a-e2da188688b5"] {
+    //  border: 5px solid red;
+      background-color: transparent;;
+      .cb-section {
+        background-color: transparent;;
+      }
+    }
+
+    div[data-item-id="0de78f21-956b-4d74-9864-13dd8216b02f"] {
+     .ui-widget {
+        display: inline-flex;
+        width: calc(50% - #{$space});
+        margin-right: $space;
+
+        &:last-child {
+          margin-right: 0;
+          width: 50%;
+        }
+
+        &:first-child {
+          display: block;
+          width: 100%;
+          margin-right: auto;
+        }
+      }
+    }
+
+  }
+  // Twitter feed...
+  // Dangerous - SF doesn't seem to allow a classname for the CMS content,
+  // so this would affect any other "CMS Connect" stuff we might add in future. Argh.
+
+  .ui-widget[data-component-label="CMS Connect (JSON)"] {
+    .slds-grid {
+      padding: 0;
+      border: none;
+
+      > div {
+        padding: 0;
+      }
+
+      .slds-text-body--small {
+        // Salesforce forces these styles on things that we don't want...
+        @extend %body;
+        margin-top: 1rem;
+        overflow: visible;
+      }
+    }
+  }
+
+
+  .slds-grid {
+    .carouselSlide .js-content .slds-col {
+      & > span {
+        // the main header container, because SF.
+        position: relative;
+        z-index: 2;
+        background: white;
+        display: block;
+        padding: 20px 20px 40px 20px; // more at bottom for the type
+        margin-top: 10px; // to allow border to show
+        height: calc(100% - 40px); // allows room for the type
+
+
+        .js-content-title {
+            h2 {
+              // SF component forces these to be H2; override the header to what we want.
+              @extend %standard-font;
+            }
+        }
+
+      }
+      .js-content-subtitle a {
+        // This is what we're using for the content type.
+        position: absolute;
+        display: flex;
+        left: 0;
+        top: 0;
+        align-items: flex-end;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background: $lighter-grey; // default
+        z-index: 1;
+        padding: 5px;
+        padding-bottom: 10px;
+        color: white;
+        pointer-events: none; // disable the link
+        cursor: pointer;
+        text-transform: uppercase; // to match badges
+
+        @each $cat, $color in $categories {
+
+          $cols: map-get($categories, $cat);
+
+          &[href$='#{$cat}'] {
+            background: map-get($cols, 'badgebg');
+            color: map-get($cols, 'badgecol');
+          }
+        }
+
+        // span {
+        //   position: absolute;
+        //   display: block;
+        //   width: 100%;
+        //   bottom: 20px;
+        //   text-align: center;
+        //   font-size: var(--lwc-fontSizeHeadingMedium,1.125rem);
+        // }
+      }
+    }
+  }
+  /// MOST STUFF BELOW HERE PROBABLY NO LONGER APPLIES! ///
+  // topic selector "read more" quick hack
+  .contentRegion .ui-widget:last-child() {
+      @include undo-card();
+      text-align: center;
+  }
+
+
+  // widgets below the main topics
+  .comm-content-footer > div {
+    display: grid;
+    grid-column-gap: $space;
+    grid-template-columns: 2fr 1fr;
+
+    .ui-widget {
+      grid-column: 1 / -1;
+
+      &:first-child() {
+        grid-column: 1;
+      }
+
+      &:nth-child(2) {
+        grid-column: 2;
+      }
+    }
+  }
+
+  .best-practices-intro {
+    text-align: center;
+    font-size: 120%;
+    p {
+      margin-bottom: 1em;
+    }
+
+    a {
+      @extend %button;
+    }
+  }
+
+  .forceCommunityTopArticleList .forceCommunityTopArticleListForTopic {
+    width: 50%;
+  }
+
+  // Topic list on homepage
+  .forceTopicFeaturedTopics,
+  .allied-carousel {
+    h2 {
+      @extend %h1;
+      @extend %primary-header-font;
+      margin-bottom: 0;
+    }
+  }
+
+  // Homepage carousel overrides
+  .carousel {
+    .carousel-cell figure {
+      @include grid(2);
+    }
+
+    .slds-image__crop {
+      height: auto;
+    }
+
+    .primary-image {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      position: static;
+      transform: initial;
+    }
+
+    figcaption {
+      position: static;
+    }
+
+  }
+
+
+  // Call for submissions
+
+  div.siteforceContentArea div[data-region-name='content'] > div[data-item-id='af38f2ee-87f1-4b66-a91e-8162e46b33d3'] {
+
+    .cb-section_column:first-child .ui-widget {
+      // the text
+    }
+
+    .cb-section_column:nth-child(2) .ui-widget {
+
+      .forceCommunityRichText {
+        position: relative;
+        padding-top: 280px;
+
+        &::after {
+          @include pseudo();
+          background: $green url(../images/icon-best-practices.png) no-repeat;
+          background-size: 180px 180px;
+          background-position: center;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 240px;
+        }
+      }
+
+      text-align: center;
+      a {
+        @extend %button;
+      }
+      // the CTA
+
+    }
+
+  }
+}
+

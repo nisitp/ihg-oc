@@ -1,0 +1,17 @@
+uuid: d39ca9e3-9e92-403e-b67f-544c5f177a88
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Allied Member'
+type: allied_member
+description: ''
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

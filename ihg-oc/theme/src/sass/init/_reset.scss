@@ -1,0 +1,22 @@
+// General resets of Salesforce awfulness
+body .siteforceContentArea {
+
+  div .slds-page-header__title,
+  .forceTopicFeaturedTopics .featuredTopicHeader,
+  .topicHeaderLink,
+  .forceCommunityTopArticleList .title,
+  .selfServiceSimilarArticles42 > h2,
+  .ui-widget .slds-text-heading_small,
+  .acblexBlogCategories h3 {
+    @extend %h2;
+
+    margin-top: 0;
+  }
+
+  community_article-similar-articles-item {
+    span {
+      font-weight: normal !important;
+    }
+  }
+}
+

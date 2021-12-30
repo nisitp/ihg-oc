@@ -1,0 +1,274 @@
+body .siteforceServiceBody {
+  @extend %body;
+
+  .forceTopicFeaturedTopics .topicList {
+    .topicContent {
+      display: block;
+
+      .topicLabel {
+        position: absolute;
+        bottom: 0;
+        // background: white;
+        // color: black;
+      }
+    }
+  }
+}
+
+
+/*
+// Stuff from SF featured topics
+body {
+  .cHS_FeaturedTopics .topicContent { background-color: rgba(0,0,0,0.4) }
+  .cHS_FeaturedTopics .topicItem a { border-radius: 0% }
+  .cHS_FeaturedTopics .topicContent .topicLabel { background-color: rgba(0,0,0,0) }
+
+  .cHS_FeaturedTopics .topicContent:hover .topicLabel, .cHS_FeaturedTopics .forceTopicFeaturedTopics .stylingOverrideHook_6306a .topicLink:focus .topicContent .topicLabel { background-color: rgba(0,0,0,0) }
+  .cHS_FeaturedTopics .topicContent .topicLabel { width: 100% }
+  .cHS_FeaturedTopics .topicContent .topicLabel { align-self: center }
+  .cHS_FeaturedTopics .topicContent { justify-content: center }
+  .cHS_FeaturedTopics .topicContent .topicLabel { text-align: center }
+
+  // .forceTopicFeaturedTopicItem.topicItem{display:block;padding:1px;width:50%;height:200px;box-sizing:border-box;float:left}.forceTopicFeaturedTopicItem .topicLink{position:relative;display:block;width:100%;height:100%;overflow:hidden}.forceTopicFeaturedTopicItem .topicImage{background-position:center;background-size:cover;background-repeat:no-repeat;width:100%;height:100%;z-index:-1}.forceTopicFeaturedTopicItem .topicContent{position:absolute;left:0;top:0;width:100%;height:100%;display:table;table-layout:fixed}.forceTopicFeaturedTopicItem .topicLabel{color:#ffffff;vertical-align:middle;text-align:center;overflow:hidden;text-overflow:ellipsis;padding:8px}@media only screen and (min-width:48em){.forceTopicFeaturedTopicItem.topicItem{height:360px}.forceTopicFeaturedTopicItem .topicLabel{padding:18px}}@media only screen and (min-width:48em) and (min-aspect-ratio:4/3),only screen and (min-width:64.0625em){.forceTopicFeaturedTopicItem.topicItem{width:33.33333333333333%;height:250px}}
+}
+*/
+
+%topic-item {
+  // border-radius: 16px;
+  // padding: 0;
+  @extend %card;
+
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding-top: 40px; // for the title
+
+  /*
+  &:hover .topicContent .topicLabel {
+    background: transparent;
+    color: white;
+    text-decoration: none;
+  }
+  */
+
+  .topicLabel {
+    @extend %h3;
+
+    text-transform: none;
+    font-size: 1.25em;
+    position: absolute;
+    width: calc(100% + #{$space} * 2);
+    top: 0;
+    left: -$space;
+    padding-left: 70px;
+    height: 60px;
+    line-height: 60px;
+    background: $light-blue !important;
+    color: white;
+  }
+
+  .topicLink {
+    transition: background-color 100ms linear;
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    /*
+    @each $cat, $color in $programs {
+      &[href*='#{$cat}'] {
+        background-color: #{$color};
+
+        &:hover {
+          background-color: darken($color, 20%);
+        }
+      }
+    }
+    */
+  }
+
+  .topicContent {
+    background-color: transparent !important;
+  }
+
+  .topicImage {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    z-index: 2;
+    background-size: 100%;
+    background-position: center;
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+
+    @include bp(m) {
+      // background-size: 30%;
+    }
+  }
+}
+
+body .community-topics-directory {
+  .topic-category {
+    .topicItem {
+      @extend %topic-item;
+
+      margin-bottom: $space;
+      color: black;
+
+      .topicLink {
+        display: grid;
+        grid-template-columns: 150px auto;
+        grid-column-gap: $space;
+        // padding: 20px;
+        align-items: center;
+        height: auto;
+      }
+
+      .topicImage {
+        height: 50px;
+        width: 170px;
+        position: static;
+        background-position: center center;
+      }
+
+      .topicContent {
+        .topicLabel {
+          text-decoration: none;
+          font-weight: bold;
+        }
+      }
+    }
+
+    ul.topic-children {
+      @include grid();
+
+      margin-bottom: $space;
+
+      li,
+      .topicItem {
+        margin-bottom: 0;
+      }
+
+      .topicItem .topicLink {
+        display: block;
+        color: black;
+      }
+
+      .topicImage {
+        display: none;
+      }
+
+      .topicLabel {
+        color: black;
+      }
+    }
+  }
+}
+
+// Homepage featured topics
+html body .forceTopicFeaturedTopics {
+  @include undo-card();
+
+  // fix all this :(
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-top: 0;
+
+  .featured-topics--intro {
+    margin-bottom: $space;
+  }
+
+  .topicList {
+    margin: 0 !important;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: $space;
+    grid-row-gap: $space;
+
+    .topic__articles {
+      @extend %padded-list;
+      @extend %bulleted-list;
+    }
+
+    @include bp(m) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .topicItem {
+      @extend %topic-item;
+
+      @include bp(m) {
+        min-height: 180px;
+      }
+
+      padding-bottom: 40px;
+
+      .more-link {
+        text-align: right;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    .topicContent .topicLabel {
+      @extend %h4;
+
+      font-weight: normal;
+      padding-left: 100px;
+    }
+
+    .featured-topics--all .topicImage {
+      background-image: url(../images/categories-all.png);
+    }
+  }
+}
+
+// Topic Detail Page
+
+html body.comm-page-topic {
+  .forceCommunityHeadline {
+    @include undo-card(!important);
+
+    h1.headlineTitle {
+      @extend %h1;
+
+      text-align: left;
+    }
+  }
+
+  .selfServiceTopicRelatedArticle {
+    h1 {
+      @extend %h1;
+    }
+  }
+}
+
+// override for stupid SF
+.forceCommunityTopArticleListForTopic {
+  .topicArticleList {
+    .article-title.slds-truncate {
+      overflow: visible;
+      text-overflow: initial;
+      white-space: initial;
+    }
+  }
+}
+
+html .forceCommunityRelatedTopics .forceTopicTopicList .topicItemLink,
+community_article-topic-trending-articles-list li {
+  &,
+  & a,
+  & a span {
+    @extend %standard-link;
+
+    font-size: inherit;
+    font-weight: inherit !important;
+  }
+}

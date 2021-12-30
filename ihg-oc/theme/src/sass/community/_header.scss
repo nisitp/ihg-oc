@@ -1,0 +1,135 @@
+/* NEW: */
+
+
+.forceCommunityThemeHeaderCompact .forceCommunitySearchBox .search-button, .forceCommunityThemeHeaderCompact .forceCommunitySearchBox .has-input .search-button, .forceCommunityThemeHeaderCompact .forceCommunitySearchBox .search-button.focus {
+  // width: fit-content !important;
+  width: 60px !important;
+  text-align: center;
+  padding: 0 20px;
+  background: rgb(0, 111, 148);
+  font-size: 0;
+  &::before {
+    width: 100%;
+    height: 30px;
+    content: "";
+    display: block;
+    color: white;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' focusable='false' data-key='search' aria-hidden='true' viewBox='0 0 52 52' class='slds-button__icon' style='fill:white;'%3E%3Cg%3E%3Cpath d='M49.598 45.298l-13.4-13.3c2.7-3.8 4.1-8.6 3.4-13.7-1.2-8.6-8.2-15.4-16.9-16.2-11.8-1.2-21.8 8.8-20.6 20.7.8 8.6 7.6 15.7 16.2 16.9 5.1.7 9.9-.7 13.7-3.4l13.3 13.3c.6.6 1.5.6 2.1 0l2.1-2.1c.6-.6.6-1.6.1-2.2zm-41.6-24.4c0-7.1 5.8-12.9 12.9-12.9 7.1 0 12.9 5.8 12.9 12.9 0 7.1-5.8 12.9-12.9 12.9-7.1 0-12.9-5.7-12.9-12.9z' fill-rule='white'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+@include bp(sm) {
+  .themeHeader {
+
+    @include bp(0, s) {
+      .themeHeaderInner {
+
+        // style mobile colors
+        background: white;
+
+        button svg {
+          fill: $blue;
+        }
+        .themeBurgerLine {
+          background: $blue !important;
+        }
+      }
+      .logoImage {
+
+      }
+    }
+
+    @include bp(m) {
+      border-top: 100px solid white; // room for logo
+
+      .themeLogo {
+        position: absolute; // remove it from flow
+        top: -60px;
+
+        .forceCommunityThemeLogo {
+          &:hover {
+            // prevent blinking
+            text-decoration: none;
+            color: inherit;
+          }
+        }
+      }
+
+    }
+
+
+    .themeNav {
+      li a {
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+body .siteforceServiceBody .cHeaderLine {
+  padding-bottom: 30px;
+}
+
+.siteforceDesignTimeRegion .comm-navigation {
+  nav > ul > li:first-child {
+    top: -190px !important; // fix for builder
+  }
+}
+
+body {
+  .themeHeader {
+    border-bottom: 4px solid white;
+
+    nav {
+      > ul > li {
+        color: white;
+
+        * {
+          font-size: 1.125rem;
+          text-transform: none;
+        }
+
+        a:hover,
+        a.slds-is-active {
+          background: transparent !important;
+          color: $lighter-grey;
+        }
+
+        &:first-child {
+          padding-left: 0;
+        }
+      }
+
+      .slds-list_vertical {
+        // drop-down nav
+        background: white;
+
+        a {
+          color: $grey-dark;
+          font-weight: 400;
+        }
+      }
+    }
+
+    .comm-user-profile-menu__trigger {
+      &-p {
+        &::before {
+          content: "Hello, ";
+        }
+      }
+    }
+
+    .slds-avatar {
+      width: 35px;
+      height: 35px;
+      border: 1px solid white;
+    }
+  }
+}

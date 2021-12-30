@@ -1,0 +1,25 @@
+uuid: d535e09a-8690-4de2-8e54-3786aa7262d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: covid_19_resources
+label: 'COVID-19 Resources'
+handler: simple
+handler_configuration: {  }
+entity_settings:
+  target_type: node
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      resource: resource
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+queue_settings:
+  min_size: 0
+  max_size: 0
+  act_as_queue: false
+  reverse: false

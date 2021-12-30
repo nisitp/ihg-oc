@@ -1,0 +1,29 @@
+uuid: 018ac914-9884-41e7-8953-bae5f8ebf824
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_membership_level
+    - node.type.allied_member
+    - taxonomy.vocabulary.allied_member_levels
+id: node.allied_member.field_membership_level
+field_name: field_membership_level
+entity_type: node
+bundle: allied_member
+label: 'Allied Member Level'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      allied_member_levels: allied_member_levels
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

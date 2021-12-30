@@ -1,0 +1,168 @@
+html body .footer {
+  text-align: center;
+  // background-color: #003595;
+  color: white;
+  padding: 0;
+  background: #243746;
+  overflow-x: hidden;
+
+  h2 {
+    @extend %h2;
+
+    font-weight: 200 !important;
+    margin-bottom: 0.5em;
+  }
+
+  > div {
+    //max-width: 1440px !important;
+
+    > div {
+      max-width: 1440px;
+      border: 2px solid red;
+      margin: 0 auto;
+    }
+    margin: 0 auto;
+
+    @include bp(m) {
+      /* reenable if we add the allied member carousel
+      display: grid;
+      grid-template-columns: 450px auto;
+      grid-column-gap: $space;
+
+      // & > div:first-child,
+      & > div:last-child {
+        grid-column: 1 / -1; // span both
+      }
+
+      & > div:first-child {
+//        border-bottom: 5px solid black;
+//        @include full-bleed(white, both);
+      }
+
+      */
+    }
+  }
+
+  .ui-widget,
+  .slds-card {
+    @include undo-card();
+
+    z-index: 2; // for bleed stuff
+  }
+
+  .ui-widget:first-child,
+  .slds-card {
+    padding: $space 0 !important; // override undo-card. Need to fix this some time.
+  }
+
+  .ui-widget:first-child {
+    max-width: none !important;
+    // site switcher - hackery!
+    position: absolute;
+    top: 0;
+    width: 600px;
+    right: 0;
+
+    @include bp(0, s) {
+      display: none !important; // hide on mobile
+    }
+
+    @include bp(1440px) {
+      right: calc((100vw - 1440px) / 2);
+    }
+
+    //    right: 0;
+    // min-width: 75vw;
+    z-index: 9;
+  }
+
+  .ui-widget:last-child {
+    // final footer
+    @include full-bleed(#212325);
+
+    background: #1d252c;
+    padding: 10px;
+    padding-top: $space;
+    color: white;
+    margin-bottom: 0;
+  }
+
+  .forceCommunityContactSupportForm {
+    max-width: 600px;
+    margin: 0 auto;
+
+    input,
+    textarea {
+      width: auto;
+    }
+
+    .uiInput {
+      align-items: center;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      grid-column-gap: 20px;
+
+      label {
+        color: white;
+      }
+    }
+  }
+
+  .allied-member--carousel {
+    background: white;
+    @include full-bleed(white, left);
+
+    ul {
+      padding: $space * 2 0;
+
+      img {
+        max-height: 100px;
+      }
+    }
+  }
+
+  .navigation-block,
+  .footer-nav {
+    .slds-card__header {
+      padding-right: 0;
+    }
+
+    h2 {
+      text-align: right;
+      display: block;
+    }
+
+    &.navigation-block {
+      text-align: right;
+    }
+
+    color: white;
+
+    li {
+      list-style: none;
+
+      &::before {
+        display: none; // SF bullets
+      }
+    }
+
+    a {
+      color: white;
+      text-decoration: underline;
+      text-decoration-color: $green;
+    }
+  }
+
+  .footer-menu-block {
+    padding: $space $space $space 0;
+  }
+
+  .block-copyright-block {
+    display: flex;
+    justify-content: center;
+
+    ul {
+      display: flex;
+    }
+  }
+}

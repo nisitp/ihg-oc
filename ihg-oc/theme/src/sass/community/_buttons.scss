@@ -1,0 +1,93 @@
+%button {
+  // display: inherit; // placeholder
+  border-radius: 0;
+
+  background-color: $light-blue;
+  border: 2px solid $light-blue;
+  color: $white;
+
+  &.slds-button_neutral {
+    background-color: white;
+    color: $blue;
+  }
+
+  svg {
+    fill: white;
+  }
+
+  /*
+  // border-radius: 16px;
+  padding: 0.5em;
+  position: relative;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &::after {
+    @include pseudo();
+    width: 100%;
+    height: 100%;
+    // border-radius: 16px;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.75), 0 1px 4px 0 rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
+
+  */
+}
+
+
+body.body {
+
+  .vote-stars button {
+    background: transparent !important; // quick fix
+  }
+  button:not(.cb-RichTextInline-toolbarButton):not(.dummyButtonCallToAction):not(.slds-button),
+  a[role=button]:not(.shareMenuTrigger) {
+    @extend %button;
+  }
+
+  .button span,
+  .slds-button__icon {
+    color: white !important;
+  }
+
+  button .slds-icon-text-default,
+  .button .slds-icon-text-default {
+    fill: white;
+  }
+
+  a:not(.button) {
+    text-decoration-color: $green;
+    color: $light-blue;
+  }
+
+  .slds-text-body--small button,
+  .slds-post__footer-actions-list li button {
+    padding: 0.5em;
+  }
+
+  .sld-button.slds-icon-utility-add {
+    font-size: 90%;
+  }
+
+  button.dummyButtonCallToAction {
+    &,
+    * {
+      cursor: pointer;
+    }
+  }
+
+  .categories[feeds_emoji-categorySelector_categorySelector] {
+    background: $light-blue;
+  }
+}

@@ -1,0 +1,20 @@
+uuid: b3cbfd3c-49f0-4920-ba7f-5a0f1db1be7b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_membership_level
+field_name: field_membership_level
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

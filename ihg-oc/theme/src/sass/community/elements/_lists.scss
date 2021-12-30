@@ -1,0 +1,55 @@
+%undo-list {
+  margin: 0;
+  padding: 0;
+  li {
+    list-style: none;
+
+    &::before { 
+      display: none;
+    }
+  }
+}
+%indented-list {
+    margin-left: $space;
+    margin-top: $space;
+}
+
+%bulleted-list {
+  //list-style: disc;
+  
+  li::before {
+      content: "\2022"; 
+      color:$dark-teal; 
+      font-weight: bold; 
+      display: inline-block; 
+      width: 1em;
+      margin-left: -1em; 
+    }      
+  
+  // color: $dark-teal;
+}
+
+%bordered-list {
+    & > li {
+      border-bottom: 1px solid $light-grey;
+      padding: 0.5em;
+  
+      a {
+        @extend %standard-link;
+      }
+    }
+  }
+  
+%padded-list {
+    & > li {
+      margin-bottom: 0.5em;
+    }
+}
+
+body .glide__slides {
+  margin: 0 !important;
+
+  > li.glide__slide {  
+    &::before { display: none !important; }
+  }
+}

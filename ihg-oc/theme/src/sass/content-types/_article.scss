@@ -1,0 +1,175 @@
+// Overrides for new AC stuff.
+// Cards
+
+.knowledge--article--headshot {
+  @extend %bordered-card;
+  @extend %no-hover;
+  &:empty {
+    display: none;
+  }
+}
+
+.knowledge--article--headshot {
+  img {
+    // border-radius: 50%;
+    max-width: 200px !important;
+    height: auto !important;
+    //height: 150px !important;
+
+  }
+}
+
+
+.articles-item,
+.head-page,
+.knowledge-item {
+
+
+
+  // handle the little badges
+  .articles-item__head .slds-badge {
+    // override default
+    background: $light-grey;
+    transition: background-color 0.5s ease; // so new colors fade in
+
+    &::after {
+      display: none;
+    }
+  }
+
+  @each $cat, $color in $categories {
+    &[data-articleType='#{$cat}'] {
+      @include articleStyle('#{$cat}');
+    }
+  }
+
+  .articles-item__tegs-list {
+    .slds-badge {
+      color: black !important;
+    }
+  }
+}
+
+.article .acknowltngKnowledgeArticleAdditionalInfo {
+  border: none !important;
+
+  > h2 {
+    display: none;
+  }
+
+  .slds-text-longform {
+    li > span {
+      display: none;
+    }
+
+    img {
+      border-radius: 50%;
+    }
+  }
+}
+
+.acknowltngKnowledgeArticleItem {
+  h1.head-page__title {
+    @extend %h1;
+
+    color: black;
+    line-height: 1.25;
+  }
+
+
+  // Some articles have <br> tags for spacers :/
+  br {
+    height: 1rem;
+    content: " ";
+    display: block;
+  }
+
+  p br {
+    line-height: 0;
+  }
+
+  .acknowltngKnowledgeArticleBody {
+    @extend %standard-font;
+    @extend %body;
+
+    line-height: 1.5;
+
+    img {
+      width: auto !important;
+      height: auto !important;
+    }
+  }
+
+  img.inset {
+    float: left;
+    margin: 0 $space $space 0;
+  }
+}
+
+// Below is probably no longer in use.
+
+body .siteforceServiceBody .selfServiceArticleLayout {
+  .ui-widget:last-child .article-column,
+  article.summary,
+  article.content {
+    display: none;
+  }
+}
+
+.comm-page-article,
+.null {
+  div[data-region-name='sidebar'] {
+    // position: sticky;
+    // top: 20px;
+  }
+
+  .acknowltngKnowledgeArticleItem {
+    @extend %bordered-card;
+    @extend %no-hover;
+  }
+
+  .cHS_Knowledge_Detail.knowledge--article--detail {
+    h2 {
+      @extend %h2;
+      @extend %primary-header-font;
+      @include font-size(35px);
+
+      font-weight: 700;
+    }
+
+    section:not(:first-child) > h2:first-child {
+      margin-top: 1em;
+    }
+
+    a.scroll-tracker {
+      &:hover {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+    }
+
+    h3 {
+      @extend %h2;
+
+      margin-top: 1em;
+    }
+
+
+    ul {
+      @extend %padded-list;
+      @extend %indented-list;
+      @extend %bulleted-list;
+    }
+
+    a:not([href]) {
+      color: inherit;
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: none;
+        cursor: initial;
+      }
+    }
+  }
+}

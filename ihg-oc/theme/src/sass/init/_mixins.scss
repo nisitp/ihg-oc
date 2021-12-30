@@ -1,0 +1,63 @@
+@mixin grid($number: 3, $padding: $spacing-unit, $align: center) {
+  display: grid;
+  grid-template-columns: repeat($number, 1fr);
+  grid-column-gap: $padding;
+  grid-row-gap: $padding;
+  align-items: $align;
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin has-full-pseudo() {
+  position: relative;
+
+  &::before {
+    @include pseudo();
+
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
+@mixin full-bleed($color, $direction: both) {
+  @include has-full-pseudo();
+
+  &::before {
+    background: $color;
+
+    @if ($direction == left or $direction == both) {
+      margin-left: -50vw;
+    }
+
+    @if ($direction == both) {
+      width: 150vw;
+    } @else {
+      width: 50vw;
+    }
+
+    content: " ";
+    display: block;
+    z-index: -1;
+  }
+}
+
+@mixin articleStyle($type) {
+  $cols: map-get($categories, $type);
+
+  .articles-item__head {
+    .slds-badge {
+      background: map-get($cols, 'badgebg');
+      color: map-get($cols, 'badgecol');
+
+      &::after {
+        display: none; // get rid of AC background
+      }
+    }
+  }
+}

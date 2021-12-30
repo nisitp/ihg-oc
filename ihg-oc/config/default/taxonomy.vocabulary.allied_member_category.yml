@@ -1,0 +1,8 @@
+uuid: ce48f5d7-ad45-4480-b28f-c236071aef8d
+langcode: en
+status: true
+dependencies: {  }
+name: 'Allied Member Category'
+vid: allied_member_category
+description: ''
+weight: 0

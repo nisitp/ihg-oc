@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains members_import.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function members_import_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    
+    case 'help.page.members_import':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Members Import') . '</p>';
+      return $output;
+
+    default:
+  }
+}

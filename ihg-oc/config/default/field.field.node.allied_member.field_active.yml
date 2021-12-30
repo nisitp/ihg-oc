@@ -1,0 +1,23 @@
+uuid: 73c8b106-ea11-4357-95a3-a86482c7cd8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_active
+    - node.type.allied_member
+id: node.allied_member.field_active
+field_name: field_active
+entity_type: node
+bundle: allied_member
+label: Active
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

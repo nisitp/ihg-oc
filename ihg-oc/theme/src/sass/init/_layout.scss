@@ -1,0 +1,72 @@
+@import "../../../node_modules/ddbreakpoints/lib/dd.breakpoints.scss";
+@import "colors";
+@import "variables";
+@import "mixins";
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+
+  > .dialog-off-canvas-main-canvas {
+    overflow-x: hidden;
+  }
+}
+
+.layout-container {
+  max-width: 1200px;
+  padding: 0 $spacing-unit;
+  margin: 0 auto;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  .logo a {
+    display: block;
+    width: 240px;
+    height: 60px;
+    background-image: url(/themes/custom/oc/dist/images/logo.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-bottom: 20px;
+  }
+}
+
+main {
+  flex: 1;
+  @include bp(m) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  > .layout-content {
+    @include bp(m) {
+      min-height: 550px;
+    }
+  }
+}
+
+.region-header {
+  padding-top: 20px;
+
+  nav#block-mainnavigation {
+    @include full-bleed($light-blue);
+
+    padding: 0.25em 0;
+
+    a {
+      color: $green;
+      text-decoration: none;
+    }
+  }
+}
+
+.region-footer {
+  @include full-bleed($light-blue);
+
+  color: white;
+  background: $light-blue;
+  text-align: center;
+  padding: 60px 0;
+}

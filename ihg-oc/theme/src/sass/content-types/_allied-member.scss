@@ -1,0 +1,477 @@
+$allied-level-logos: (
+  "Global Diamond": (
+    "file": "diamond.png",
+    "width": 230,
+    "height": 31,
+  ),
+  "Diamond": (
+    "file": "diamond.png",
+    "width": 230,
+    "height": 31,
+  ),
+  "Platinum": (
+    "file": "platinum.png",
+    "width": 244,
+    "height": 31,
+  ),
+  "Gold": (
+    "file": "gold.png",
+    "width": 158,
+    "height": 31,
+  ),
+  "Silver": (
+    "file": "silver.png",
+    "width": 178,
+    "height": 31,
+  ),
+  "Bronze": (
+    "file": "bronze.png",
+    "width": 202,
+    "height": 31,
+  ),
+  "Associate": (
+    "file": "associate.jpg",
+    "width": 208,
+    "height": 31,
+  ),
+);
+
+@mixin allied-member-level-logo($title, $size: large) {
+  $logo: map-get($allied-level-logos, $title);
+
+  $file: map-get($logo, "file");
+  $width: map-get($logo, "width");
+  $height: map-get($logo, "height");
+
+  @if ($size == "small") {
+    $width: $width / 2;
+    $height: $height / 2;
+  }
+
+  text-indent: -9999vw;
+  position: relative;
+
+  &::before {
+    @include pseudo();
+
+    background-image: url(../images/allied-member-#{$file});
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-position: 50% 50%;
+    // width: #{$width}px;
+    height: #{$height}px;
+  }
+}
+
+.cb-section.partner-intro {
+  @extend %bordered-card;
+  @extend %no-hover;
+  margin-bottom: $space;
+}
+
+.allied-member--list {
+  &--inner {
+    @include grid(2);
+
+    align-items: flex-start;
+    grid-template-columns: 1fr 3fr;
+  }
+
+  &-filters {
+    @extend %bordered-card;
+
+    box-shadow: rgba(152, 152, 152, 0.1) 0 15px 50px;
+
+    &:hover {
+      box-shadow: rgba(152, 152, 152, 0.1) 0 15px 50px;
+      transform: none;
+    }
+
+    position: sticky;
+    top: $space;
+
+    .filter-header {
+      margin-top: 1em;
+
+      fieldset + & {
+        margin-top: 3em;
+      }
+    }
+
+    fieldset {
+      max-height: 30vh;
+      overflow-y: auto;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: $space;
+
+      #allied-member-filter--name {
+        width: 100%;
+      }
+
+      .checkbox-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 0.5em;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    input + label {
+      // for checkboxes, label is to the right
+      padding-left: 1em;
+    }
+
+    label + input {
+      padding-left: 1em;
+    }
+  }
+
+  &--items {
+    @include grid(3);
+
+    grid-row-gap: $space * 3;
+
+    .allied-member {
+      transition: opacity 600ms ease-in-out;
+
+      &.filtered-name,
+      &.filtered-level,
+      &.filtered-category {
+        opacity: 0;
+        order: 10000000; // move it to the back, since we can't animate the display property and if we only use opacity they still take up grid space.
+      }
+    }
+
+    h2 {
+      grid-column: 1 / -1;
+      margin: 0;
+      padding: $space 0;
+      border: 1px solid $light-grey;
+      // border-bottom: 1px solid $light-grey;
+      background: $grey-extra-light;
+      padding-left: $space;
+
+      @each $logo, $logospec in $allied-level-logos {
+        &[data-title="#{$logo}"] {
+          @include allied-member-level-logo($logo);
+        }
+      }
+    }
+
+    .allied_member + h2 {
+      // not the first one
+      margin-top: $space * 3;
+    }
+
+    .allied_member--teaser {
+      text-align: center;
+    }
+  }
+}
+
+.allied_member,
+.allied-member {
+  &--teaser {
+    @extend %bordered-card;
+
+    // When we're viewing the teaser within detail:
+    .allied-member--detail & {
+      @extend %no-hover;
+    }
+
+    position: relative;
+
+    .allied-member--teaser--link {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    .allied-member--type {
+      @each $logo, $logospec in $allied-level-logos {
+        &[data-title="#{$logo}"] {
+          @include allied-member-level-logo($logo, small);
+        }
+      }
+    }
+
+    .allied-member--logo {
+      border: 1px solid $grey-extra-light;
+      border-radius: 16px;
+      padding: 20px;
+
+      min-height: 150px;
+      display: block;
+      width: 100%;
+      position: relative;
+
+      &__inner {
+        display: block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        position: absolute;
+        width: calc(100% - 40px);
+        height: calc(100% - 40px);
+      }
+    }
+
+    h3 {
+      // display: none;
+      text-align: center;
+    }
+
+    img {
+      max-width: 250px;
+      max-height: 70px;
+    }
+  }
+}
+
+.allied-member--detail {
+
+  &.allied-member--detail-Logo {
+    @include undo-card(!important);
+
+    margin-top: 0 - $space * 4;
+  }
+
+  &.allied-member--detail-Level {
+    @include undo-card(!important);
+
+    height: $space * 3;
+  }
+
+  &.allied-member--detail-Contact {
+    display: grid !important;
+    max-width: 400px;
+    grid-template-columns: minmax(50px, 130px) auto;
+    align-items: center;
+    grid-column-gap: $space / 2;
+
+    h3 {
+      margin-bottom: 1em;
+      grid-column: 1 / -1;
+    }
+
+    .contact--image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 1px solid $light-grey;
+      background-size: cover;
+      background-image: url(../images/avatar.jpg);
+    }
+  }
+
+  .allied-level-logo {
+    @each $logo, $logospec in $allied-level-logos {
+      &[data-title="#{$logo}"] {
+        @include allied-member-level-logo($logo);
+      }
+
+      position: relative;
+      padding: $space/2 0 $space 0;
+
+      &::before {
+        //right: $space*2;
+        left: 0;
+      }
+    }
+  }
+
+  .allied-member-resources {
+    @include grid();
+
+    img,
+    video,
+    embed {
+      width: 100%;
+    }
+  }
+}
+
+// Individual features
+body .ui-widget .allied-member-feature {
+  @extend %card;
+
+  padding: 0;
+
+  // display: grid !important;
+  position: relative; // for the thumbnail
+  overflow: hidden; // for the thumbnail which sometimes overlaps
+  grid-template-columns: 1fr 2fr;
+  background: white;
+
+
+  > h2,
+  > div {
+    padding: $space;
+  }
+
+  &--detail {
+    padding-bottom: 60px !important; // room for the button
+    position: relative;
+    min-height: 350px;
+    display: grid;
+    grid-template-rows: 100px 200px;
+
+    > div {
+      // margin-bottom: $space;
+    }
+  }
+
+  &--thumbnail {
+    position: absolute;
+    //width: calc(65% + #{$space}); // based on the overall grid container, not the table-cell
+    width: 100%;
+    height: calc(100% + 60px);
+    top: 0;
+    left: 0;
+    opacity: 0.1; // temp
+    background-position: top center;
+    background-size: cover;
+    z-index: 1;
+  }
+
+  &--logo {
+    max-width: 200px;
+    margin: 0 auto;
+    align-self: center;
+    justify-self: center;
+  }
+
+  &--cta {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 2; // default
+
+    a {
+      @extend %button;
+      padding: 0.5em;
+      display: inline-block;
+      // background: #243746;
+
+      // color: white;
+    }
+  }
+
+  .allied-member-feature--description {
+    // font-style: italic;
+    font-size: 20px;
+    position: relative;
+  }
+
+  > .allied-member-feature--type {
+    // TODO: Standardize!
+    // background: #243746;
+    font-size: 0;
+    position: relative;
+    display: flex;
+    min-height: 100px;
+    width: 100%;
+    // padding-top: 10px;
+    z-index: 2;
+
+    &::before {
+      @include pseudo();
+      top: 0;
+      left: 0;
+      background: transparent url(../images/allied-motm.png);
+      background-size: cover;
+      // 555x137
+      width: 100%;
+      // background-size: contain;
+      background-repeat: no-repeat;
+      height: 0;
+      padding-bottom: 28.6%; // actual width divided by actual height
+    }
+  }
+  &--partners { // not really an allied member feature but what the heck
+    > .allied-member-feature--type {
+      &::before {
+        background-image: url(../images/strategic-partners.png);
+      }
+    }
+  }
+
+  &--AlliedMemberSpotlight {
+    > .allied-member-feature--type {
+      // background: #243e8c;
+
+      &::before {
+        // 557x148
+        background-image: url(../images/allied-spotlight.png);
+        // padding-bottom: 21.2%;
+      }
+    }
+
+    .allied-member-feature--cta a {
+      // background: #243e8c;
+    }
+  }
+
+  &--MySource {
+    > .allied-member-feature--type {
+      // background: #25215d;
+
+      &::before {
+        // 339x77
+        background-image: url(../images/allied-mysource.png);
+        // padding-bottom: 18.2%;
+      }
+    }
+
+  }
+}
+
+// Carousel of features
+body .allied-member-feature-carousel {
+  margin-bottom: $space * 2;
+
+  .glide__slide {
+    height: auto; // conversely, changing to 100% will make it sorta auto height.
+  }
+
+  .allied-member-feature {
+    height: 100%;
+  }
+
+  .glide__bullets {
+    bottom: 0 - $space;
+
+    .glide__bullet {
+      background: $light-blue;
+      border: 2px solid $grey;
+
+      &:hover,
+      &:focus {
+        border: 2px solid $green;
+      }
+
+      &--active {
+        color: $blue;
+        border: 2px solid $teal;
+      }
+    }
+  }
+}
+
+body .siteforceContentArea .slds-card.allied-member-features--list {
+  .slds-card__body > ul {
+    @extend %undo-list;
+  }
+}

@@ -1,0 +1,8 @@
+uuid: 67a79daa-a584-4fa9-95bb-34ff3d4f3366
+langcode: en
+status: true
+dependencies: {  }
+name: 'Allied Member Levels'
+vid: allied_member_levels
+description: ''
+weight: 0

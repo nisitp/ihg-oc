@@ -1,0 +1,39 @@
+@import "../content-types/allied-member";
+
+// Don't think any of the below is currently in use.
+body #allied-member-container {
+  background: $grey-extra-light;
+  padding: $spacing-unit;
+
+  #allied-member-carousel {
+    background: white;
+    padding: $spacing-unit;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+  }
+
+  ul.allied-members-list {
+    @include grid($number: 5);
+
+    margin-bottom: $spacing-unit*3;
+    background: white;
+    padding: $spacing-unit;
+
+    li {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+
+      &::before {
+        display: none !important; // override salesforce/theme list style
+      }
+    }
+
+    img {
+      max-height: 8vw;
+      max-width: 200px;
+    }
+  }
+}
+

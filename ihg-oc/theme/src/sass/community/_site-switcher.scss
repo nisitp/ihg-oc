@@ -1,0 +1,104 @@
+// copied from old site; not SASS.
+
+#tb-site-switcher {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: none;
+  // margin: -80px auto -40px auto !important;
+  // layout width minus width of logo (250px)
+  max-width: 1158px;
+  // padding-right: 10px;
+  z-index: -1; // so it doesn't cover the logo
+
+  /*    padding-right 4vw; */
+  font-size: 16px !important;
+  font-family: Roboto;
+}
+
+@media only screen and (min-width: 1700px) {
+  #tb-site-switcher {
+    // border: 1px solid #aaa;
+    // padding-right: 3vw;
+  }
+}
+
+#tb-site-switcher ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  float: right;
+}
+
+#tb-site-switcher ul,
+#tb-site-switcher ul li,
+#tb-site-switcher ul a {
+  line-height: 24px;
+}
+
+/* Stuff for Nimble to match prod */
+.topbar-account #tb-site-switcher {
+  max-width: 1275px;
+}
+
+.topbar-account header .navbar-right {
+  position: relative;
+  top: 50px;
+}
+
+@media only screen and (min-width: 1000px) {
+  #tb-site-switcher {
+    display: block;
+  }
+}
+
+#tb-site-switcher ul li {
+  list-style: none;
+  display: inline-block;
+  padding-right: 14px;
+
+  &::before {
+    display: none;
+  }
+}
+
+#tb-site-switcher ul li a {
+  color: color("grey-dark");
+  text-decoration: none;
+  position: relative;
+  padding-left: 22px;
+}
+
+#tb-site-switcher ul li a::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  background-image: url("//www.owners.org/template/images/topbar-sprite.png");
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  margin-top: 4px;
+  background-size: cover;
+  top: -2px;
+  font-size: 0;
+}
+
+@media only screen and (min-width: 1240px) {
+  #tb-site-switcher ul li.account {
+    padding-right: 0;
+  }
+}
+
+#tb-site-switcher ul li.account a::before {
+  background-position: -48px 0;
+}
+
+#tb-site-switcher ul li.oc a::before {
+  background-position: -24px 0;
+  width: 19px;
+}
+
+// Current one... works a bit differently than on www since we're not injecting it.
+
+#tb-site-switcher li.oc a {
+  color: rgb(130, 197, 92);
+}

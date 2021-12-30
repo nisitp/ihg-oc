@@ -1,0 +1,25 @@
+###
+### This file contains items that should be ignored for production only, but that should be allowed in the main git repo.
+### E.g. this file, compilation scripts, etc.
+###
+
+.circleci/*
+.gitignore-production
+/settings
+docker
+docker/*
+themes/*
+custom_modules/*
+composer.json
+composer.lock
+docker-compose.yml
+custom_modules
+node_modules/*
+web/themes/custom/storagepost/node_modules
+web/themes/custom/storagepost/package-lock.json
+web/themes/custom/storagepost/package.json
+web/themes/custom/storagepost/src/*
+htdocs/themes/custom/owners/node_modules
+htdocs/themes/custom/owners/package-lock.json
+htdocs/themes/custom/owners/package.json
+htdocs/themes/custom/owners/src/*

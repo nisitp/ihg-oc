@@ -1,0 +1,35 @@
+body.comm-page-global-search {
+  .forceHoverPanel {
+    display: none !important;
+  }
+}
+
+// Below probably isn't needed for current version
+body .custom-search {
+//  border: 20px solid red !important;
+
+  .sortingInfo {
+    // don't allow sorting for now for our external searches
+    display: none;
+  }
+
+  // hide all but the first column of the table ...
+  table tr td,
+  table tr th {
+    display: none;
+  }
+
+  table tr td:first-child,
+  table tr th:first-child,
+   {
+    display: table-cell;
+  }
+
+}
+
+body .search-region {
+  .curtain-blur,
+  .result-container {
+    display: none !important;
+  }
+}

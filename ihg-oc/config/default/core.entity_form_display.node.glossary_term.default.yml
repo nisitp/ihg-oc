@@ -1,0 +1,98 @@
+uuid: a0b4f9de-a188-46fb-8d96-083785282704
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.glossary_term.field_content
+    - field.field.node.glossary_term.field_description
+    - field.field.node.glossary_term.field_tags
+    - node.type.glossary_term
+  module:
+    - entity_reference_layout
+    - path
+    - text
+id: node.glossary_term.default
+targetEntityType: node
+bundle: glossary_term
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_content:
+    weight: 8
+    settings:
+      always_show_options_form: false
+      preview_view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_layout_widget
+    region: content
+  field_description:
+    weight: 7
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  field_tags:
+    weight: 9
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
+  path:
+    type: path
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 3
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 6
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,25 @@
+uuid: 924465b4-1c35-4f44-a673-82a0cb363eb8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.section.field_content
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_layout
+id: paragraph.section.default
+targetEntityType: paragraph
+bundle: section
+mode: default
+content:
+  field_content:
+    weight: 0
+    settings:
+      always_show_options_form: false
+      preview_view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_layout_widget
+    region: content
+hidden:
+  created: true
+  status: true

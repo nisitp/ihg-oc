@@ -1,0 +1,25 @@
+body .body {
+  .forceCommunityRecordListDesktop section {
+    width: 100%;
+
+    .slds-card {
+      border: 1px solid $light-blue;
+      padding: $spacing-unit;
+
+      // Members, Last activity, etc.
+      li {
+        display: none;
+      }
+
+      li:first-child,
+      li:nth-child(3) {
+        display: list-item;
+      }
+    }
+  }
+
+  // hopefully this is specific enough -- sidebar for discussion pages
+  .forceCommunityGroupRecordHomeTabs .detailRelatedList .slds-card__body .slds-form .slds-form-element__static {
+    font-size: 16px;
+  }
+}

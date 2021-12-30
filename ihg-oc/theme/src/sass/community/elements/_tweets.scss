@@ -1,0 +1,46 @@
+// Hopefully this won't change...
+
+div[data-item-id='9d80501f-038f-4046-b31e-8ad3a0422140'] {
+  position: relative;
+
+  .card {
+    border: none;
+    .uiOutputRichText {      
+      @extend %body;
+    }    
+
+    .titleFont {
+      
+      font-family: Roboto;
+      &::before {
+        content: "@";
+      }
+    }
+
+    .authorDateBox  {      
+      margin: 10px auto 10px auto;
+    }
+  }
+
+  .slds-button {
+    // prev and next
+    position: absolute;    
+    top: 50%;
+    left: -30px;
+    font-size: 0;
+    &::before {
+      content: "\f053";
+      font-family: 'Font Awesome 5 Pro';
+      
+      font-size:36px;
+    }
+
+    & + .slds-button {
+      left: auto;
+      right: -20px;
+      &::before {
+        content: "\f054";
+      }
+    }
+  }
+}

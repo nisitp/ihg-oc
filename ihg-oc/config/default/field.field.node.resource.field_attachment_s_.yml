@@ -1,0 +1,27 @@
+uuid: ce6743d1-109e-4795-bed3-39a912b7966c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attachment_s_
+    - node.type.resource
+  module:
+    - file
+id: node.resource.field_attachment_s_
+field_name: field_attachment_s_
+entity_type: node
+bundle: resource
+label: Attachment(s)
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf doc ppt zip jpg png gif'
+  max_filesize: ''
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

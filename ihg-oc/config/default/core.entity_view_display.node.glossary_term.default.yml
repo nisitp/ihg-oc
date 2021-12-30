@@ -1,0 +1,48 @@
+uuid: 01bb2724-dabd-4e90-8dfa-80bdf5331bac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.glossary_term.field_content
+    - field.field.node.glossary_term.field_description
+    - field.field.node.glossary_term.field_tags
+    - node.type.glossary_term
+  module:
+    - entity_reference_layout
+    - text
+    - user
+id: node.glossary_term.default
+targetEntityType: node
+bundle: glossary_term
+mode: default
+content:
+  field_content:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_layout
+    region: content
+  field_description:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_tags:
+    weight: 3
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

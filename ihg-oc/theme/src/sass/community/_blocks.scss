@@ -1,0 +1,188 @@
+.forceCommunityRichText .social-nav-block {
+  ul {
+    margin-top: 1.5rem;
+    list-style: none;
+    display: flex;
+
+    @include bp(0, s) {
+      max-width: 80vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    li {
+      padding-left: 0;
+
+      &::before {
+        display: none; // hide Salesforce bullet
+      }
+
+      display: inline-block;
+
+      @include bp(0, sm) {
+        margin-right: 1rem;
+      }
+
+      @include bp(md) {
+        margin-right: 0.25rem;
+      }
+
+      @include bp(lg) {
+        margin-right: 0.5rem;
+        margin-bottom: 1rem !important;
+      }
+
+      @include bp(xl) {
+        margin-right: 1rem;
+      }
+
+      padding-right: 0;
+
+      a {
+        display: block;
+        height: 50px;
+        width: 50px;
+        background-color: $slate;
+        border-radius: 35px;
+        font-size: 0;
+
+        @include bp(sm, xl) {
+          height: 50px;
+          width: 50px;
+          border-radius: 25px;
+        }
+
+        &::before {
+          font-family: "Font Awesome 5 Brands";
+          color: white;
+          font-size: 30px;
+          line-height: 1.75;
+          height: 100%;
+          width: 100%;
+          text-align: center;
+          position: relative;
+          // top: 23px;
+          display: inline-block;
+
+          /*
+                  @include bp(sm, xl) {
+                      height: 50px;
+                      width: 50px;
+                      top: 13px;
+                      font-size: 33px;
+                  }
+                  */
+        }
+
+        &:hover {
+          color: $green;
+
+          &::before {
+            color: $green;
+          }
+        }
+
+        &.facebook {
+          &::before {
+            content: "\f39e";
+          }
+        }
+
+        &.instagram {
+          &::before {
+            content: "\f16d";
+          }
+        }
+
+        &.linkedin {
+          &::before {
+            content: "\f0e1";
+          }
+        }
+
+        &.vimeo {
+          &::before {
+            content: "\f27d";
+          }
+        }
+
+        &.twitter {
+          &::before {
+            content: "\f099";
+          }
+        }
+      }
+
+      &:last-child {
+        padding-right: 0;
+        margin-right: 0 !important;
+      }
+    }
+  }
+}
+
+// All old stuff follows
+body .siteforceServiceBody {
+  background: $grey-extra-light url(../images/knowledge-base-pattern-background.png) repeat;
+
+  .siteforceContentArea {
+    background-color: $grey-extra-light;
+  }
+
+  //Sidebar
+
+  div[data-region-name="sidebar"] {
+  }
+
+  // .siteforceContentArea .comm-layout-column:not(:empty) > div,
+  // .forceCommunitySection .cb-section_column,
+  .cCenterPanel .ui-widget {
+    background: transparent;
+    padding: 0;
+
+    & > *:not(.cb-section):not(.elementProxyContainer) {
+      @extend %card;
+
+      display: block;
+    }
+
+    &.no-border {
+      border-bottom: none;
+    }
+  }
+
+  .ui-widget .ui-widget,
+  .siteforceContentArea .comm-layout-column:not(:empty) > div .comm-layout-column > div,
+  .siteforceContentArea .comm-layout-column .ui-widget {
+    // padding: 0;
+    border-bottom: none;
+  }
+
+  body .comm-page-home .comm-layout-column:not(:empty) > div[data-region-name="header"] {
+    padding: 0;
+    border: none;
+  }
+
+  .forceCommunitySection .cb-section_row {
+    margin-bottom: $space;
+    padding: 0 $space;
+  }
+
+  .cuf-body .forceChatterFeedBodyText p {
+    margin-bottom: 1em;
+  }
+
+  .cuf-body span.uiOutputText {
+    // display: block;
+    margin-bottom: 1em;
+
+    .uiOutputText {
+      // nexted
+      display: inline;
+    }
+  }
+
+  .cuf-body li > span.uiOutputText {
+    display: inline;
+  }
+}

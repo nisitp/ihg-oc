@@ -1,0 +1,23 @@
+uuid: f06f8a26-4b25-4938-946f-f564474d198d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - node.type.glossary_term
+  module:
+    - text
+id: node.glossary_term.field_description
+field_name: field_description
+entity_type: node
+bundle: glossary_term
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

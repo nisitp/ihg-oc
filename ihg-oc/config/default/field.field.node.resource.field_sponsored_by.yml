@@ -1,0 +1,29 @@
+uuid: 94989675-3a23-47e0-a09e-8a364be95314
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sponsored_by
+    - node.type.allied_member
+    - node.type.resource
+id: node.resource.field_sponsored_by
+field_name: field_sponsored_by
+entity_type: node
+bundle: resource
+label: 'Sponsored By'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      allied_member: allied_member
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

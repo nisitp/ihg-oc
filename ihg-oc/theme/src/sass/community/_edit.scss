@@ -1,0 +1,10 @@
+// Things related to the page editor. Hackery madness!
+
+.in-edit {
+
+  a[href*='#x-'] {
+    border: 1px dotted red;
+    width: 10px;
+    height: 10px;
+  }
+}

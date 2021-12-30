@@ -1,0 +1,161 @@
+version: 2.1
+
+defaults: &defaults
+    docker:
+       - image: webdevops/php-apache:7.2
+    working_directory: ~/oc
+
+jobs:
+    build:
+        <<: *defaults
+        steps:
+          - checkout
+          
+          - run: curl -sL https://deb.nodesource.com/setup_10.x | bash
+          - run: apt-get update && apt-get install -y git bash curl nodejs
+                  
+          - run: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          - run: php composer-setup.php
+          - run: php -r "unlink('composer-setup.php');"
+          - run: php composer.phar self-update
+          - run: mv composer.phar /usr/local/bin/composer               
+          
+          - run:
+              name: Clean out vendor folder etc.
+              command: |
+                rm -fR vendor
+                 
+          - run:
+              name: Clear composer memory limit & run update
+              working_directory: ~/oc
+              command: |
+                php -d memory_limit=-1 `which composer` update
+                
+          - run:
+              name: Install Drupal
+              working_directory: ~/oc
+              command: |
+                  composer install --prefer-source && composer update && composer clear-cache
+
+          - run:
+              name: Install Theme Dependencies
+              working_directory: ~/oc/theme
+              command: |
+                  npm install
+
+          - run:
+              name: Build the theme
+              working_directory: ~/oc/theme
+              command: |
+                  npm run imagemin
+                  npm run compile
+
+          - run:
+              name: Move theme into place
+              command: |
+                  mkdir -p web/themes/custom/oc
+                  cp -fR theme/. web/themes/custom/oc/
+                  
+          - run:
+              name: Move libraries
+              command: |
+                  mkdir -p web/libraries
+                  mv libraries/* web/libraries/
+
+          - run:
+              name: Move modules into place
+              command: |
+                  mkdir -p web/modules/custom
+                  cp -fR custom_modules/* web/modules/custom/
+                 
+          - run:
+              name: Move settings file(s)
+              command: |
+                  cp -f settings/settings.php web/sites/default/settings.php && rm -fR settings && cp -f config/.htaccess web/
+
+          - run:
+              name: Install Integration Dependencies
+              working_directory: ~/oc/community_integration
+              command: |
+                  npm ci
+
+          - run:
+              name: Build the integration
+              working_directory: ~/oc/community_integration
+              command: |
+                  npm run build
+
+          - run:
+              name: Move integration into place
+              command: |
+                  mkdir -p web/community_integration
+                  cp -fR community_integration/dist/* web/community_integration/
+
+#           - run:
+#               name: Copy .htaccess file over server
+#               command: |
+#                   cp htaccess/.htaccess web/.htaccess
+                  
+
+          - run:
+              name: Update .gitignore files
+              command: |
+                  find `pwd` -name '.gitignore' -print0 | while IFS= read -r -d $'\0' file; do
+                      echo $file
+                      sed -i -e 's/# ::: //g' $file
+                      sed -i -e '/.*::: cut :::*/,$d' $file
+                  done \
+                  && cat .gitignore .gitignore-production > .gitignore
+
+          - run:
+              name: Delete additional .git folders
+              command: |
+                  find web/modules -name '.git' -print0 | while IFS= read -r -d $'\0' file; do
+                      rm -fR $file
+                  done \
+                  && find vendor -name '.git' -print0 | while IFS= read -r -d $'\0' file; do
+                      rm -fR $file
+                  done \
+                                    
+          - persist_to_workspace:
+              root: ~/oc
+              paths: .      
+
+    deploy_dev:
+        docker:
+           - image: circleci/node:latest
+        working_directory: ~/oc
+
+        steps:
+            - attach_workspace:
+                at: ~/oc
+
+            - add_ssh_keys:
+                fingerprints:
+                    - "8c:cd:a8:56:62:12:c7:ff:87:97:d6:5a:13:2a:07:f6"
+                              
+            - deploy:
+                working_directory: ~/oc            
+                command: |
+                    git config --global user.email "george@hotsauceatl.com"
+                    git config --global user.name "Hot Sauce [circleci]"
+                    mkdir -p ~/.ssh/ && echo -e "Host oc.hotsauceatl.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+                    git config --global http.sslVerify false && git clone hotsauce@oc.hotsauceatl.com:~/git/oc.git tmp_remote
+                    rm -rf .git
+                    mv tmp_remote/.git .git
+                    rm -rf tmp_remote
+                    git add -A
+                    git commit -m"deploy"
+                    git push origin                    
+
+workflows:
+    version: 2
+    build_and_deploy:
+        jobs:
+            - build
+            - deploy_dev:
+                requires:
+                    - build
+                filters:
+                    branches:
+                        only: master
